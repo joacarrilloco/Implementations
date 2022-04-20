@@ -15,7 +15,7 @@ struct node
     L = new node( l, mid ), R = new node( mid + 1, r );
   }
 
-  void update( int x, T val )
+  void update( int x, const T &val )
   {
     if( l == r )
     {
@@ -34,5 +34,5 @@ struct node
     if( y <= mid ) return L->query( x, y );
     if( x > mid ) return R->query( x, y );
     return max( L->query( x, mid ), R ->query( mid + 1, y ) );
-  };
+  }
 };
