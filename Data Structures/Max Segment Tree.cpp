@@ -1,6 +1,6 @@
 const T INITIAL_VALUE = -INF;
 
-template< typename T, const T& MX(const T&, const T&) = std::max >
+template< typename T, const T& MAX(const T&, const T&) = std::max >
 struct node
 {
   int l, r, mid;
@@ -16,7 +16,7 @@ struct node
       return; 
     }
     L = new node( l, mid ), R = new node( mid + 1, r );
-    mx = MX( L-> mx, R-> mx );
+    mx = MAX( L-> mx, R-> mx );
   }
 
   void set_value( int x, const T &val )
@@ -27,7 +27,7 @@ struct node
       return;
     }
     ( x <= mid ? L : R ) -> set_value( x, val );
-    mx = MX( L-> mx, R-> mx );
+    mx = MAX( L-> mx, R-> mx );
   }
 
   T query( int x, int y )
@@ -37,6 +37,6 @@ struct node
 
     if( y <= mid ) return L->query( x, y );
     if( x > mid ) return R->query( x, y );
-    return MX( L->query( x, mid ), R ->query( mid + 1, y ) );
+    return MAX( L->query( x, mid ), R ->query( mid + 1, y ) );
   }
 };
