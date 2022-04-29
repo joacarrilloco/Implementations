@@ -1,4 +1,4 @@
-const T MIN_VALUE = -INF;
+const T INITIAL_VALUE = -INF;
 
 template< typename T, const T& MX(const T&, const T&) = std::max >
 struct node
@@ -9,10 +9,14 @@ struct node
 
   node( int ll, int rr ) : l( ll ), r ( rr )
   {
-    mx = MIN_VALUE; 
     mid = ( l + r ) >> 1;
-    if( l == r ) return;
+    if( l == r ) 
+    {
+      mx = INITIAL_VALUE;
+      return; 
+    }
     L = new node( l, mid ), R = new node( mid + 1, r );
+    mx = MX( L-> mx, R-> mx );
   }
 
   void set_value( int x, const T &val )
