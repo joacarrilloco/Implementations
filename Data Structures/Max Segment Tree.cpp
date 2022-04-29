@@ -1,6 +1,6 @@
 const T MIN_VALUE = -INF;
 
-template< typename T, const T& MX(const T&, const T&) >
+template< typename T, const T& MX(const T&, const T&) = std::max >
 struct node
 {
   int l, r, mid;
