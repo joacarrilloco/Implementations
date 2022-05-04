@@ -7,7 +7,7 @@ struct node
 {
   int l, r, mid;
   T mx;
-	std::unique_ptr<node<T>> L, R;
+  std::unique_ptr<node<T>> L, R;
 
   node( int ll, int rr ) : l( ll ), r ( rr )
   {
@@ -18,7 +18,7 @@ struct node
       return; 
     }
     L = std::make_unique<node<T>>( l, mid );
-		R = std::make_unique<node<T>>( mid + 1, r );
+    R = std::make_unique<node<T>>( mid + 1, r );
     mx = MAX( L-> mx, R-> mx );
   }
 
