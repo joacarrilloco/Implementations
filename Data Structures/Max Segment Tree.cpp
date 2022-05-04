@@ -1,11 +1,13 @@
-const T INITIAL_VALUE = -INF;
+#include<memory>
+
+const int INITIAL_VALUE = 0;
 
 template< typename T, const T& MAX(const T&, const T&) = std::max >
 struct node
 {
   int l, r, mid;
   T mx;
-  node *L, *R;
+	std::unique_ptr<node<T>> L, R;
 
   node( int ll, int rr ) : l( ll ), r ( rr )
   {
@@ -15,7 +17,8 @@ struct node
       mx = INITIAL_VALUE;
       return; 
     }
-    L = new node( l, mid ), R = new node( mid + 1, r );
+    L = std::make_unique<node<T>>( l, mid );
+		R = std::make_unique<node<T>>( mid + 1, r );
     mx = MAX( L-> mx, R-> mx );
   }
 
